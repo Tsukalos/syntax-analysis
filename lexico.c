@@ -127,6 +127,13 @@ char *codigo(char s[])
     return NULL;
 }
 
+void append(char s[], char c)
+{
+    int len = strlen(s);
+    s[len] = c;
+    s[len+1] = 0;
+}
+
 void analisador(char simbolo[])
 {
     //simbolo[0] = 0;
@@ -151,7 +158,7 @@ void analisador(char simbolo[])
             }
             else
             {
-                strcat(atomo, &s);
+                append(atomo, s);
             }
             break;
         case '<':
@@ -162,7 +169,7 @@ void analisador(char simbolo[])
             }
             else
             {
-                strcat(atomo, &s);
+                append(atomo, s);
             }
             break;
         case '>':
@@ -173,11 +180,11 @@ void analisador(char simbolo[])
             }
             else
             {
-                strcat(atomo, &s);
+                append(atomo, s);
             }
             break;
         default:
-            strcat(atomo, &s);
+            append(atomo, s);
             break;
         }
 
@@ -188,7 +195,7 @@ void analisador(char simbolo[])
         do
         {
             c = tolower(prox);
-            strcat(atomo, &c);
+            append(atomo, c);
             proximo();
         } while (is_letter_or_digit());
         if (is_keyword(atomo))
@@ -208,7 +215,7 @@ void analisador(char simbolo[])
         do
         {
             c = prox;
-            strcat(atomo, &c);
+            append(atomo, c);
             proximo();
         } while (is_digit());
         if (is_letter())
